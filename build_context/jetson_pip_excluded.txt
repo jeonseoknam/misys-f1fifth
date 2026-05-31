@@ -1,0 +1,8 @@
+graphsurgeon==0.4.6
+onnx-graphsurgeon==0.3.12
+tensorrt==8.6.2
+tensorrt-dispatch==8.6.2
+tensorrt-lean==8.6.2
+torch==2.10.0
+torchvision==0.25.0
+uff==0.6.9

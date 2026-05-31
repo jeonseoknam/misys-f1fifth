@@ -1,0 +1,3 @@
+*.log
+README.md
+jetson_pip_excluded.txt
