@@ -1,0 +1,17 @@
+build/
+install/
+log/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.bag
+*.db3
+*.mcap
+*.pt
+*.pth
+*.onnx
+*.engine
+# large local data (do NOT commit)
+experiment/
+*_mapping*/
+*_localize*/

@@ -1,0 +1,17 @@
+// https://aka.ms/devcontainer.json
+{
+    "dockerComposeFile": "../../docker/docker-compose.yaml",
+    "shutdownAction": "stopCompose",
+
+    "name": "Fixposition SDK (no ROS)", "service": "bookworm-dev", "runServices": [ "bookworm-dev" ],
+
+    // Use this user in the container, re-map IDs to local user automatically
+    "remoteUser": "fpsdk",
+    "updateRemoteUserUID": true,
+
+    // compare .services.bookworm-dev.volumes in ../../docker/docker-compose.yaml
+    "workspaceFolder": "/home/fpsdk/fixposition-sdk",
+
+    // Deliberately empty, see fpsdk.code-workspace instead
+    "customizations": {}
+}

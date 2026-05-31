@@ -1,0 +1,72 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# macos
+.DS_Store
+
+# py
+*.pyc
+
+#vscode
+.vscode
+
+#maps
+#stack_master/maps/*
+#!stack_master/maps/GLC_smile_small
+#stack_master/maps/GLC_smile_small/speed_scaling.yaml
+#stack_master/maps/GLC_smile_small/ot_sectors.yaml
+#!stack_master/maps/hangar_1905_v0
+#stack_master/maps/hangar_1905_v0/speed_scaling.yaml
+#stack_master/maps/hangar_1905_v0/ot_sectors.yaml
+
+#todo: what's up with maps -> external map folder?
+.vscode/build
+.vscode/log
+.vscode/c_cpp_properties.json
+
+build/
+install/
+log/
+data_bag/
+teras_bag/
+teras_head_to_head/
+0820_pp_bag/
+0820_pp_bag_orig/
+*.db3
+0820_pp_bag/
+0820_pp_bag_orig/
+SE_teras/
+data_bag/
+teras_bag/
+teras_head_to_head/
+*.db3

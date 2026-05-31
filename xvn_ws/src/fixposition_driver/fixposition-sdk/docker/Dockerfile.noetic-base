@@ -1,0 +1,62 @@
+# ROS Noetic (until May, 2025) base image (Ubuntu 20.04.6 LTS "Focal")
+FROM ros:noetic-ros-base
+
+LABEL org.opencontainers.image.description="Fixposition SDK docker image: ROS Noetic (Ubuntu 20.04) base image with minimal stuff required to build"
+LABEL org.opencontainers.image.source=https://github.com/fixposition
+
+ENV FPSDK_IMAGE=noetic-base
+ENV ROS_DISTRO=noetic
+
+# Remove automatic use of /ros_entrypoint.sh, we'll deal with this ourselves
+ENTRYPOINT []
+
+# Install stuff
+COPY docker/scripts/install_aptbase.sh /tmp
+RUN /tmp/install_aptbase.sh && rm -f /tmp/install_aptbase.sh
+
+# Download, build and install clang-format
+COPY docker/scripts/install_clangformat.sh /tmp
+RUN /tmp/install_clangformat.sh && rm -f /tmp/install_clangformat.sh
+
+# Download, build and install clang-format
+COPY docker/scripts/install_gtest.sh /tmp
+RUN /tmp/install_gtest.sh && rm -f /tmp/install_gtest.sh
+
+# Download, build and install capnp (not currently used, though)
+COPY docker/scripts/install_capnp.sh /tmp
+RUN /tmp/install_capnp.sh && rm -f /tmp/install_capnp.sh
+
+# Download, build and install PROJ
+COPY docker/scripts/install_proj.sh /tmp
+RUN /tmp/install_proj.sh && rm -f /tmp/install_proj.sh
+
+# Download, build and install Doxygen
+COPY docker/scripts/install_doxygen.sh /tmp
+RUN /tmp/install_doxygen.sh && rm -f /tmp/install_doxygen.sh
+
+# Download, build and install pre-commit
+COPY docker/scripts/install_precommit.sh /tmp
+RUN /tmp/install_precommit.sh && rm -f /tmp/install_precommit.sh
+
+# Update ld cache for the installed libraries
+RUN /usr/sbin/ldconfig
+
+# Prevent packages from installation that we build and install below. Installing multiple versions of the same
+# package can be tricky and we better prevent that from happening. It doesn't work for all packages, though. For
+# example, ros-noetic stuff insists on libgtest.
+COPY <<EOF /etc/apt/preferences.d/manually-built-and-installed
+Package: clang-format clang-format-6.0 clang-format-7 clang-format-8 clang-format-9 clang-format-10 clang-format-11 clang-format-12
+Pin: origin *
+Pin-Priority: -1
+
+Package: capnproto libcapnp-* libcapnp-dev
+Pin: origin *
+Pin-Priority: -1
+
+Package: proj proj-ps-doc proj-data proj-rdnap proj-bin libproj15 libproj-dev
+Pin: origin *
+Pin-Priority: -1
+EOF
+
+# For debugging docker builds... (last layer!)
+RUN date > /fixposition-sdk-${FPSDK_IMAGE}

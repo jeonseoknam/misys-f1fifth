@@ -1,0 +1,13 @@
+/**:
+  ros__parameters:
+    filter_limit_min: 0
+    z_max : 0.3    #0.3
+    z_min : -0.01   #-0.03
+    x_max : 4.0
+    x_min : -3.0
+    y_max : 0.0
+    y_min : -7.0
+    # filter_limit_max: 1
+    # filter_field_name: "z"
+    keep_organized: false
+    filter_limit_negative: false

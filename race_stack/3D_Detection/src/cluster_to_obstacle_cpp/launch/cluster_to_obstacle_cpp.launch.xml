@@ -1,0 +1,17 @@
+<launch>
+    <arg name="cluster_to_obstacle_param_file" default="$(find-pkg-share cluster_to_obstacle_cpp)/config/cluster_to_obstacle_node.param.yaml"/>
+    <!-- <arg name="frenet_waypoints_topic" default="/global_waypoints"/>
+    <arg name="cluster_topic" default="/clusters"/>
+    <arg name="obstacle_pub_topic" default="/perception/detection/raw_obstacles"/> -->
+
+    <!-- Cluster to Obstacle C++ Node -->
+    <node pkg="cluster_to_obstacle_cpp"
+          exec="cluster_to_obstacle_node"
+          name="cluster_to_obstacle_cpp"
+          output="screen">
+        <!-- <param name="frenet_waypoints_topic" value="$(arg frenet_waypoints_topic)"/>
+        <param name="cluster_topic" value="$(arg cluster_topic)"/>
+        <param name="obstacle_pub_topic" value="$(arg obstacle_pub_topic)"/> -->
+        <param name="use_sim_time" value="true"/>
+    </node>
+</launch>

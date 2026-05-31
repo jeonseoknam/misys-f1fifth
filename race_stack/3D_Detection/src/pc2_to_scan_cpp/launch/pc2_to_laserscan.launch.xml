@@ -1,0 +1,14 @@
+<launch>
+  <arg name="pc_topic" default="/passthrough/lidar"/>
+  <arg name="scan_topic" default="/scan"/>
+
+  <node pkg="pc2_to_scan_cpp" exec="pc2_to_laserscan" name="pc2_to_laserscan" output="screen">
+    <param name="pc_topic" value="$(var pc_topic)"/>
+    <param name="scan_topic" value="$(var scan_topic)"/>
+     <!-- -135 deg -->
+    <param name="angle_increment_deg" value="0.25"/>
+    <param name="range_min" value="0.1"/>
+    <param name="range_max" value="7.0"/>
+    <param name="use_closest_point" value="true"/>
+  </node>
+</launch>
